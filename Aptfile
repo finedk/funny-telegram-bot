@@ -1,4 +1,8 @@
-libsm6 
+libsm6
 libxrender1
 libfontconfig1
 libice6
+libsm6
+libxext6
+libgl1-mesa-glx
+ffmpeg

@@ -8,6 +8,5 @@ async def set_default_commands(dp):
             types.BotCommand("info", "Информация о боте"),
             types.BotCommand("commands", "Список доступных команд"),
             types.BotCommand("cancel", "Остановить текущее действие")
-            #types.BotCommand("get_sticker_id", "Получить ID стикера")
         ]
     )

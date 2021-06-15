@@ -10,7 +10,7 @@ from loader import dp
 
 @dp.message_handler(text="Клавиатура для управления ботом", state=None)
 async def keyboard_handler(message: types.Message):
-    await message.answer("Данная клавиатура нужна для упрощённого взаимодействия с ботом. В ней уже введины команды служебных функций, из-за этого вам не нужно каждый раз нажимать на команду /commands, чтобы вывести список доступных функций!")
+    await message.answer("Данная клавиатура нужна для упрощённого взаимодействия с ботом. В ней уже введены команды служебных функций, из-за этого вам не нужно каждый раз нажимать на команду /commands, чтобы вывести список доступных функций!")
 
 @dp.message_handler(Command("cancel"))
 async def cancel_handler(message: types.Message):

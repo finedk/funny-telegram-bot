@@ -6,33 +6,34 @@ from aiogram import types
 from aiogram.dispatcher.filters.builtin import Command, Text
 from aiogram.dispatcher import FSMContext
 from aiogram.types import message
-from middlewares.states import all_states
+from middlewares.states.all_states import gender_person_in_photo_state
 
 
 from loader import dp
 
-@dp.message_handler(text="/cancel", state="*")
+@dp.message_handler(text="/cancel", state=gender_person_in_photo_state)
 async def cancel(message: types.Message, state: FSMContext):
-    await message.answer("✅ Функция остановлена!\nВведите новую команду /commands")
+    await message.answer("✅ Функция остановлена!\n\nВведите новую команду /commands")
     await state.finish()
 
 
 @dp.message_handler(Command("gender_person_in_photo"), state=None)
 async def gender_person_in_photo(message: types.Message, state: FSMContext):
-    await message.answer('''Вы зашли в функцию по распознованию пола человека. \n
+    await message.answer('''Вы зашли в функцию по распознованию пола человека.\n
+Скиньте сюда фотографии, которые вам нужно обработать нейросетью!\n
 ❗️ Все фотографии, которые вы будете сюда скидывать автоматически будут обрабатываться в этой функции.
 ❗️ Если вам нужно её остановить, то введите /cancel''')
-    await all_states.gender_person_in_photo.step1.set()
+    await gender_person_in_photo_state.step1.set()
 
 
 
-@dp.message_handler(content_types="document", state="*")
+@dp.message_handler(content_types="document", state=gender_person_in_photo_state)
 async def gender_person_in_photo_document(message: types.Message, state: FSMContext):
     await message.answer("Скиньте фото, а не документ")
 
 
 
-@dp.message_handler(content_types="photo", state=all_states.gender_person_in_photo.step1)
+@dp.message_handler(content_types="photo", state=gender_person_in_photo_state.step1)
 async def gender_person_in_photo_photo(message: types.Message, state: FSMContext):
     temp = message.photo[-1].file_id
     await message.photo[-1].download(f"./handlers/gender_person_in_photo/temp/{temp}.jpg")
@@ -45,7 +46,7 @@ async def gender_person_in_photo_photo(message: types.Message, state: FSMContext
     elif res[0] == "female":
         await message.reply("На этом фото изображена - женщина")
     else:
-        await message.answer("Произошла ошибка, попробуйте скинуть изображение ещё раз")
+        await message.answer("‼️ Произошла ошибка, попробуйте скинуть изображение ещё раз")
 
 
 

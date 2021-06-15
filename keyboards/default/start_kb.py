@@ -1,10 +1,17 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-admin_panel_kb = ReplyKeyboardMarkup(
+navigating_bot_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton("Узнать ID стикера"),
-            KeyboardButton("Узнать пол человека на фото")
+            KeyboardButton("Клавиатура для управления ботом")
+        ], 
+        [ 
+            KeyboardButton("/start"),
+            KeyboardButton("/commands")
+        ], 
+        [ 
+            KeyboardButton("/info"),
+            KeyboardButton("/cancel")
         ]
     ], 
     resize_keyboard=True

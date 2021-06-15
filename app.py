@@ -15,4 +15,7 @@ async def on_startup(dispatcher):
 
 
 if __name__ == '__main__':
+    """
+    При запуске бота, запускается скрипт по уведомлению всех, кто есть в {who_need_notif} из .env
+    """
     executor.start_polling(dp, on_startup=on_startup)

@@ -7,3 +7,7 @@ class gender_person_in_photo_state(StatesGroup):
 class ping_state(StatesGroup):
     step1 = State()
     step2 = State()
+
+class sticker_state(StatesGroup):
+    step1 = State()
+    step2 = State()

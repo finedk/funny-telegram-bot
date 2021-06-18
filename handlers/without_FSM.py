@@ -16,7 +16,7 @@ async def keyboard_handler(message: types.Message):
 async def cancel_handler(message: types.Message):
     await message.answer("❗️ Нечего останавливать")
 
-@dp.message_handler(content_types=["photo", "document", "text"])
+@dp.message_handler(content_types=["photo", "document", "text", "sticker"])
 async def without_FSM(message: types.Message):
     """
     Обработчик на случай если бот перезапустится, а у меня нет базы данных для хранения FSM,

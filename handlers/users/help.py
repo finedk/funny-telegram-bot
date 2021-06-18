@@ -16,6 +16,7 @@ async def bot_help(message: types.Message):
 
 Доступные функции:
 /get_sticker_id - Получить ID стикера
+/download_sticker - Скачать стикер в фомате PNG
 /gender_person_in_photo - Узнать пол человека на фото
 /ping - Сделать Ping запрос к IP с полной информацией'''
     

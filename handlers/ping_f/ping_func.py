@@ -16,14 +16,14 @@ async def cancel(message: types.Message, state: FSMContext):
 
 @dp.message_handler(Command("ping"), state=None)
 async def ping_func(message: types.Message, state: FSMContext):
-    await message.answer("❗️ Временно не работает!")
-'''
-    await message.answer(Вы зашли в функцию по работе с ping запросами.\n
+    await message.answer("❗️ Из-за технических ограничений сервиса Heroku функция Ping не работает!")
+"""
+    await message.answer('''Вы зашли в функцию по работе с ping запросами.\n
 Введите IP или Domain адрес, чтобы сделать ping запрос\n
 ❗️ Все домены и ip адреса, которые вы будете сюда скидывать автоматически будут обрабатываться в этой функции.
-❗️ Если вам нужно её остановить, то введите /cancel)
+❗️ Если вам нужно её остановить, то введите /cancel''')
     await ping_state.step1.set()
-'''
+"""
 
 @dp.message_handler(content_types="text", state=ping_state.step1)
 async def this_func(message: types.Message, state: FSMContext):

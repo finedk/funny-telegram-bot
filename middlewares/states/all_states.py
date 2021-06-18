@@ -11,3 +11,7 @@ class ping_state(StatesGroup):
 class sticker_state(StatesGroup):
     step1 = State()
     step2 = State()
+
+class download_sticker_state(StatesGroup):
+    step1 = State()
+    step2 = State()

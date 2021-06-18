@@ -15,7 +15,7 @@ async def cancel(message: types.Message, state: FSMContext):
 
 @dp.message_handler(Command("download_sticker"), state=None)
 async def get_sticker_id(message: types.Message):
-    await message.answer('''Вы зашли в функцию по загрузке стикера.\n
+    await message.answer('''Вы зашли в функцию по загрузке стикеров.\n
 Скиньте стикер боту!\n
 ❗️ Всё, что вы будете сюда скидывать автоматически будут обрабатываться в этой функции.
 ❗️ Если вам нужно её остановить, то введите /cancel''')
@@ -23,9 +23,12 @@ async def get_sticker_id(message: types.Message):
 
 @dp.message_handler(content_types="sticker", state=download_sticker_state.step1)
 async def get_sticker_id_send(message: types.Message):
-    stickerpack_name = message.sticker.set_name
-    sticker_emoji = message.sticker.emoji
-    username = message.from_user.username
-    await message.sticker.download(f"./handlers/download_sticker/temp/{stickerpack_name} - @{username}.png")
-    await message.reply_document(types.InputFile(f"./handlers/download_sticker/temp/{stickerpack_name} - @{username}.png"))
-    os.remove(f"./handlers/download_sticker/temp/{stickerpack_name} - @{username}.png")
+    if message.sticker.is_animated == True:
+        await message.answer("❗️ Загрузка анимированных стикер не работает!") 
+
+    elif message.sticker.is_animated == False:
+        stickerpack_name = message.sticker.set_name
+        file_id = message.sticker.file_unique_id
+        await message.sticker.download(f"./handlers/download_sticker/temp/{stickerpack_name} - @{file_id}.png")
+        await message.reply_document(types.InputFile(f"./handlers/download_sticker/temp/{stickerpack_name} - @{file_id}.png"))
+        os.remove(f"./handlers/download_sticker/temp/{stickerpack_name} - @{file_id}.png")

@@ -12,6 +12,7 @@ async def bot_help(message: types.Message):
 /start - Запустить бота
 /info - Информация о боте
 /commands - Список доступных команд
+/on_keyboard - Включить клавиатуру
 /cancel - Остановить текущее действие
 
 Доступные функции:
